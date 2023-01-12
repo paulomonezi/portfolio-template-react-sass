@@ -3,11 +3,13 @@
 
 .technologies-container
     margin-bottom: 1rem
+    display: flex
 
     .technologies-grid
         display: flex
         flex-wrap: wrap
         gap: 1.5rem
+        justify-content: center
 
         .technology-card
             @include mixins.center
@@ -66,4 +68,10 @@
     #jest
         svg
             color: #99425B
-    
+
+    .buttons-show-more-less
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-top: 1rem
+        gap: 8rem

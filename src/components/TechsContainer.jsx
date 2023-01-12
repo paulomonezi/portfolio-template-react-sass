@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
   DiHtml5,
   DiCss3,
@@ -18,6 +19,8 @@ import {
   SiDotnet,
 } from "react-icons/si"
 
+import { MdOutlineFrontHand } from "react-icons/md"
+
 import "../styles/components/techscontainer.sass"
 
 const technologies = [
@@ -35,15 +38,30 @@ const technologies = [
   { id: "dotnet", name: ".NET", icon: <SiDotnet /> },
   { id: "jest", name: "Jest", icon: <SiJest /> },
   { id: "mysql", name: "MySQL", icon: <DiMysql /> },
+  { id: "stop", name: "Hold on", icon: <MdOutlineFrontHand /> },
+  { id: "stop", name: "Hold on", icon: <MdOutlineFrontHand /> },
+  { id: "stop", name: "Hold on", icon: <MdOutlineFrontHand /> },
+  { id: "stop", name: "Hold on", icon: <MdOutlineFrontHand /> },
+  { id: "stop", name: "Hold on", icon: <MdOutlineFrontHand /> },
+  { id: "stop", name: "Hold on", icon: <MdOutlineFrontHand /> },
 ]
 
 const TechsContainer = () => {
+  const [showTechs, setShowTechs] = useState(4)
+
+  const handleLoadMore = () => {
+    setShowTechs(showTechs + 4)
+  }
+  const handleLoadLess = () => {
+    setShowTechs(showTechs - 4)
+  }
+
   return (
     <section className="technologies-container">
       <h2>Tecnologias</h2>
       <div className="technologies-grid">
-        {technologies.map((tech) => (
-          <div className="technology-card" id={tech.id} key={tech.id}>
+        {technologies.slice(0, showTechs).map((tech, index) => (
+          <div className="technology-card" id={tech.id} key={index}>
             {tech.icon}
             <div className="technology-info">
               <h3>{tech.name}</h3>
@@ -55,6 +73,22 @@ const TechsContainer = () => {
             </div>
           </div>
         ))}
+      </div>
+      {showTechs === 8 && <div>This is a custom div</div>}
+      {showTechs === 12 && <div>12??</div>}
+      {showTechs === 16 && <div>16??</div>}
+      {showTechs === 20 && <div>20??</div>}
+      <div className="buttons-show-more-less">
+        {showTechs < technologies.length && (
+          <p className="load-more btn" onClick={handleLoadMore}>
+            Carregar mais
+          </p>
+        )}
+        {showTechs > 4 && (
+          <p className="load-less btn" onClick={handleLoadLess}>
+            Carregar menos
+          </p>
+        )}
       </div>
     </section>
   )
